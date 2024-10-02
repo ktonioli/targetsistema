@@ -1,7 +1,8 @@
 import json
 
 # Exemplo de dados em formato JSON (simulação de faturamento diário)
-dados_faturamento_json = '''
+with open('faturamento.json', 'r') as file:
+    dados_faturamento = json.load(file)
 [
     {"dia": 1, "faturamento": 0},
     {"dia": 2, "faturamento": 220.5},

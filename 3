@@ -1,0 +1,37 @@
+import json
+
+# Exemplo de dados em formato JSON (simulação de faturamento diário)
+dados_faturamento_json = '''
+[
+    {"dia": 1, "faturamento": 0},
+    {"dia": 2, "faturamento": 220.5},
+    {"dia": 3, "faturamento": 180.75},
+    {"dia": 4, "faturamento": 0},
+    {"dia": 5, "faturamento": 320.6},
+    {"dia": 6, "faturamento": 150.0},
+    {"dia": 7, "faturamento": 0},
+    {"dia": 8, "faturamento": 400.75}
+]
+'''
+
+# Carregar dados do faturamento
+dados_faturamento = json.loads(dados_faturamento_json)
+
+# Filtrar apenas os dias com faturamento maior que 0
+faturamentos_validos = [dia["faturamento"] for dia in dados_faturamento if dia["faturamento"] > 0]
+
+# Cálculo do menor e maior faturamento
+menor_faturamento = min(faturamentos_validos)
+maior_faturamento = max(faturamentos_validos)
+
+# Cálculo da média dos faturamentos
+media_faturamento = sum(faturamentos_validos) / len(faturamentos_validos)
+
+# Número de dias com faturamento acima da média
+dias_acima_da_media = sum(1 for faturamento in faturamentos_validos if faturamento > media_faturamento)
+
+# Exibindo os resultados
+print(f"Menor faturamento: {menor_faturamento}")
+print(f"Maior faturamento: {maior_faturamento}")
+print(f"Média de faturamento: {media_faturamento}")
+print(f"Número de dias com faturamento acima da média: {dias_acima_da_media}")
